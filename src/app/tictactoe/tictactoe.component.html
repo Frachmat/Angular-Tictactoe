@@ -1,0 +1,18 @@
+<div class="tictactoe">
+    <h1>Gra w kółko i krzyżyk</h1>
+    <div class="game-board">
+        <div class="row" *ngFor="let row of board; let i = index">
+            <div class="cell" *ngFor="let cell of row; let j = index" (click)="makeMove(i, j)" [ngClass]="{
+                    'winner': isWinnerCell(i, j), 
+                    'x': cell === 'X', 
+                    'o': cell === 'O'
+                }">
+                {{ cell }}
+            </div>
+        </div>
+    </div>
+    <div class="result" *ngIf="gameOver">
+        <h2>Wynik: {{ winner ? 'Wygrał ' + winner : 'Remis' }}</h2>
+        <button (click)="resetGame()">Zagraj ponownie</button>
+    </div>
+</div>
